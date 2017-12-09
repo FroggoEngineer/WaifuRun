@@ -4,6 +4,7 @@ import android.content.pm.ActivityInfo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import kanhoudevelopment.waifurun.objects.BlockManager;
 
 public class GameActivity extends AppCompatActivity {
 
