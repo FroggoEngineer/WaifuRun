@@ -22,6 +22,7 @@ public class GameLoopThread extends Thread {
     private final int BUTTON_HEIGHT = 256;
     private final int SCREEN_HEIGHT = 1080;
     private final int SCREEN_WIDTH = 1920;
+    private final int GAME_HEIGHT = SCREEN_HEIGHT-BUTTON_HEIGHT;
     private Bitmap background;
     private Bitmap guiBackground;
 
@@ -58,7 +59,7 @@ public class GameLoopThread extends Thread {
         cuBtnLeft = new cuButton(view,50,SCREEN_HEIGHT-256,256,null);
         cuBtnRight = new cuButton(view,SCREEN_WIDTH-256-50,SCREEN_HEIGHT-256,256,null);
 
-        player = new Player(150, 1080-BUTTON_HEIGHT, view);
+        player = new Player(200, 1080-BUTTON_HEIGHT, view);
         background = BitmapFactory.decodeResource(view.getResources(),R.drawable.background);
         guiBackground = BitmapFactory.decodeResource(view.getResources(),R.drawable.guibackgroundtest4);
 
@@ -87,6 +88,13 @@ public class GameLoopThread extends Thread {
             else
                 a++;
             */
+
+            if(!player.getJumping()) {
+                player.jump();
+            } else if(player.getBottomY() >= GAME_HEIGHT-64) {
+                player.landing();
+            }
+
             player.update();
 
             //------------------------------------------
@@ -131,8 +139,5 @@ public class GameLoopThread extends Thread {
             }
         }
     }
-
-
-
 
 }
