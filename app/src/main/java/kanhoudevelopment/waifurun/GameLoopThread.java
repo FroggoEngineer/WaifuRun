@@ -99,14 +99,16 @@ public class GameLoopThread extends Thread {
                 player.landing();
             }*/
 
+            //Update player movement
+            player.update();
 
-            if(player.getBottomY() > GAME_HEIGHT-63 && player.isJumping()) {
+            //Check if player lands
+            if(player.getBottomY() >= GAME_HEIGHT-64 && player.isJumping()) {
                 player.landing();
-                System.out.println("HEEEEJ");
 
             }
 
-            player.update();
+
 
 
             //------------------------------------------
