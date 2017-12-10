@@ -1,7 +1,6 @@
 package kanhoudevelopment.waifurun.objects;
 
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.view.SurfaceView;
 import kanhoudevelopment.waifurun.R;
 import kanhoudevelopment.waifurun.GameView;
@@ -9,8 +8,7 @@ import kanhoudevelopment.waifurun.GameView;
 public class BlockManager
 {
     public void BlockManager(){}
-    private static final int MAX_BLOCKS = 1;
-    SurfaceView view;
+    private static final int MAX_BLOCKS = 128;
 
     private Block blocks[];
 
@@ -23,22 +21,28 @@ public class BlockManager
             blocks[i].LoadContent(BitmapFactory.decodeResource(v.getResources(),
                     R.drawable.stone));
         }
+        for (int i = 0; i < 32; i++)
+            //256 = button height, 64 = block height
+            blocks[i].spawn(8, 1080-256-64, i*64+1);
     }
 
-    public Block[] getBlocks()
+    public void spawnBlock(int speed, int y)
     {
-        return blocks;
-    }
-
-    public int spawnBlock(int speed, int y)
-    {
+        int q = 0;
+        for (int i = 0; i < MAX_BLOCKS; i++)
+        {
+            //System.out.println(blocks[i].getPosX());
+            if (blocks[i].isActive() && blocks[i].getPosX() > 1920 && blocks[i].getPosY() == y) {
+                if (blocks[i].getPosX() > q+1)
+                    q = blocks[i].getPosX();
+            }
+        }
         for (int i = 0; i < MAX_BLOCKS; i++)
             if (!blocks[i].isActive())
             {
-                blocks[i].spawn(speed, y);
-                return 1;
+                blocks[i].spawn(speed, y, q);
+                return;
             }
-        return 0;
     }
 
     public void Update()

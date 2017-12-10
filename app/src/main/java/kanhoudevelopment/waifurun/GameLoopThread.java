@@ -20,6 +20,7 @@ public class GameLoopThread extends Thread {
     private Player player;
     private cuButton cuBtnLeft;
     private cuButton cuBtnRight;
+    private final int BUTTON_HEIGHT = 256;
 
     public GameLoopThread(GameView view) {
         this.view = view;
@@ -50,26 +51,37 @@ public class GameLoopThread extends Thread {
         //initialize things first
         bManager = new BlockManager();
         bManager.Initialize(view);
-        player = new Player(50, 400, view);
 
         cuBtnLeft = new cuButton(view,200,400,0,null);
         cuBtnRight = new cuButton(view,500,400,0,null);
 
-        int a = 0;
+        player = new Player(150, 1080-BUTTON_HEIGHT, view);
+        int a,b = 0;
+
 
         while (running) {
+            bManager.Update();
 
-            //GAME LOOP HERE
-            //------------------------------------------
-            if (a < 60)
-                a++;
-            else
+            if (b == 7)
             {
                 a = 0;
-                bManager.spawnBlock(20, 1080-128);
+                bManager.spawnBlock(8, 1080-BUTTON_HEIGHT-64);
             }
+            else
+                b++;
 
-            bManager.Update();
+            /*
+            if (a == 7 || a == 15 || a == 23)
+                bManager.spawnBlock(8, 1080-64*2);
+            if (a == 15 || a == 23)
+                bManager.spawnBlock(8, 1080-64*3);
+            if (a == 23)
+                bManager.spawnBlock(8, 1080-64*4);
+            if (a == 31)
+                a = 0;
+            else
+                a++;
+            */
             player.update();
 
             //------------------------------------------
