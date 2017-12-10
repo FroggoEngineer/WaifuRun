@@ -63,7 +63,7 @@ public class GameView extends SurfaceView {
 
     public void draw(Bitmap tempBit, int x, int y) {
         Canvas c = new Canvas(bmp);
-
+        c.drawBitmap(bmpReisen, 50, 50, null);
         c.drawBitmap(tempBit,x,y,null);
     }
 

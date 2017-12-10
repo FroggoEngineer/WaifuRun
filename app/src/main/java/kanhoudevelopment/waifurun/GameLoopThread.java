@@ -4,8 +4,9 @@ package kanhoudevelopment.waifurun;
  * Created by Kevin on 2017-12-10.
  */
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-
 
 
 public class GameLoopThread extends Thread {
@@ -34,11 +35,9 @@ public class GameLoopThread extends Thread {
 
 
 
-
             view.clear();
             //Do own draw stuff here
             //example: view.draw(block.getBitmap(), 10, 10)
-
 
 
             //DON'T DRAW AFTER THIS!!!!!
