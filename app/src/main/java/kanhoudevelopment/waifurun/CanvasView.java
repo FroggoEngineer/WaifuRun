@@ -34,15 +34,10 @@ public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     protected void onDraw(Canvas c) {
-
-
             //canvas = ourHolder.lockCanvas();
             //canvas.drawRGB(r,g,b);
             c.drawBitmap(bmpReisen, 50, 200, null);
             //ourHolder.unlockCanvasAndPost(canvas);
-
-
-
     }
 
     @Override

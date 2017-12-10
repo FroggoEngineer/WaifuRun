@@ -8,6 +8,8 @@ import kanhoudevelopment.waifurun.objects.BlockManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.view.MotionEvent;
+import android.view.View;
 
 
 public class GameLoopThread extends Thread {
@@ -19,7 +21,19 @@ public class GameLoopThread extends Thread {
 
     public GameLoopThread(GameView view) {
         this.view = view;
+        /*view.setOnTouchListener(new View.OnTouchListener() {
+            public boolean onTouch(View v, MotionEvent event) {
+                // ... Respond to touch events
+                return hasPressedBtn(v,event);
+
+            }
+        });*/
     }
+    /*
+    private boolean hasPressedBtn(View v, MotionEvent ev) {
+        if(ev.getX())
+        return true;
+    }*/
 
     public void setRunning(boolean run) {
         running = run;
@@ -45,6 +59,7 @@ public class GameLoopThread extends Thread {
 
             bManager.Update();
 
+
             view.clear();
             //Do own draw stuff here
             //example: view.draw(block.getBitmap(), 10, 10)
@@ -64,4 +79,8 @@ public class GameLoopThread extends Thread {
             }
         }
     }
+
+
+
+
 }

@@ -9,14 +9,19 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 
 public class GameView extends SurfaceView {
     private Bitmap bmp;
     private Bitmap bmpReisen;
+
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
     private int x = 0;
@@ -47,7 +52,6 @@ public class GameView extends SurfaceView {
                 gameLoopThread.start();
             }
 
-
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format,
                                        int width, int height) {
@@ -67,6 +71,7 @@ public class GameView extends SurfaceView {
         c.drawBitmap(tempBit,x,y,null);
     }
 
+
     @Override
     protected void onDraw(Canvas canvas) {
 
@@ -82,4 +87,5 @@ public class GameView extends SurfaceView {
         //Draw reisen
         canvas.drawBitmap(bmpReisen, x, 10, null);
     }
+
 }

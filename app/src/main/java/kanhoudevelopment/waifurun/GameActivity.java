@@ -11,6 +11,7 @@ import kanhoudevelopment.waifurun.objects.BlockManager;
 
 public class GameActivity extends AppCompatActivity implements Runnable {
 
+
     Thread gameThread = null;
     CanvasView canvas;
     volatile boolean running = false;
@@ -34,6 +35,7 @@ public class GameActivity extends AppCompatActivity implements Runnable {
 
     }
 
+
     private void main() {
 
         setContentView(canvas);
@@ -52,6 +54,8 @@ public class GameActivity extends AppCompatActivity implements Runnable {
     private void draw() {
 
     }
+
+
 
     @SuppressLint("WrongCall")
     @Override
@@ -72,9 +76,10 @@ public class GameActivity extends AppCompatActivity implements Runnable {
         //update();
 
     }
+
+
+    //Disables the option to go back to gamemenu.
     @Override
     public void onBackPressed() {
     }
-
-
 }
