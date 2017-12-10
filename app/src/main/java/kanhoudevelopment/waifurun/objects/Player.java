@@ -24,12 +24,14 @@ public class Player
     private int currentFrame = 0;
     int frameTicks = 0;
     private final int aniSpeed = 8;
+    private final int INITIAL_POSITION_Y;
 
     public Player(int x, int y, GameView v) {
         posX = x;
         posY = y;
         tex = BitmapFactory.decodeResource(v.getResources(), R.drawable.megumin);
-        posY -= (tex.getHeight() + 64);
+        posY -= (tex.getHeight() + 63);
+        INITIAL_POSITION_Y = posY;
     }
 
     public void update() {
@@ -58,10 +60,14 @@ public class Player
     public int getBottomY() {
         return posY+frameHeight;
     }
+    public void resetPos() {
+        posY = INITIAL_POSITION_Y;
+    }
 
     public void landing() {
         speedY = 0;
         jumping = false;
+        resetPos();
     }
 
     public void jump() {
