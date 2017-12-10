@@ -43,6 +43,20 @@ public class Player
                 currentFrame = 0;
             }
         }
+
+        if(jumping) {
+            speedY += 1;
+        }
+
+    }
+
+
+    public boolean getJumping() {
+        return jumping;
+    }
+
+    public int getBottomY() {
+        return posY+frameHeight;
     }
 
     public void landing() {
@@ -52,7 +66,7 @@ public class Player
 
     public void jump() {
         if(!jumping) {
-            speedY = -10;
+            speedY = -30;
             jumping = true;
         }
 
