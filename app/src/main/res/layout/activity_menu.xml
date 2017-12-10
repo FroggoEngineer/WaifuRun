@@ -5,11 +5,21 @@
     android:layout_height="match_parent">
 
     <ImageView
+        android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/toonybackground"
+        android:scaleType="fitXY"/>
+
+    <Button
+        android:id="@+id/startGamebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="115dp"
-        android:src="@drawable/reisensprite" />
+        android:layout_centerVertical="true"
+        android:text="START"
+        android:textColor="@android:color/holo_blue_bright" />
 
 </RelativeLayout>
