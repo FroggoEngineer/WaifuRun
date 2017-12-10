@@ -1,5 +1,4 @@
 package kanhoudevelopment.waifurun;
-import kanhoudevelopment.waifurun.objects.Block;
 import kanhoudevelopment.waifurun.objects.BlockManager;
 
 /**
@@ -35,19 +34,20 @@ public class GameLoopThread extends Thread {
 
             //DO GAME STUFF HERE
 
-            if (a < 10)
+            if (a < 60)
                 a++;
             else
             {
                 a = 0;
-                bManager.spawnBlock(10, 50);
+                bManager.spawnBlock(10, 400);
             }
 
+            bManager.Update();
 
             view.clear();
             //Do own draw stuff here
             //example: view.draw(block.getBitmap(), 10, 10)
-
+            bManager.draw(view);
 
 
             //DON'T DRAW AFTER THIS!!!!!

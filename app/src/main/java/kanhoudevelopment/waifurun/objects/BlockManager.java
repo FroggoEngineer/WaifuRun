@@ -1,9 +1,9 @@
 package kanhoudevelopment.waifurun.objects;
 
 import android.graphics.BitmapFactory;
-import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import kanhoudevelopment.waifurun.R;
+import kanhoudevelopment.waifurun.GameView;
 
 public class BlockManager
 {
@@ -13,14 +13,13 @@ public class BlockManager
 
     private Block blocks[];
 
-    public void Initialize(SurfaceView v)
+    public void Initialize(GameView v)
     {
-        view = v;
         blocks = new Block[MAX_BLOCKS];
         for (int i = 0; i < MAX_BLOCKS; i++)
         {
             blocks[i] = new Block();
-            blocks[i].LoadContent(BitmapFactory.decodeResource(view.getResources(),
+            blocks[i].LoadContent(BitmapFactory.decodeResource(v.getResources(),
                     R.drawable.stone));
         }
     }
@@ -33,7 +32,7 @@ public class BlockManager
     public int spawnBlock(int speed, int y)
     {
         for (int i = 0; i < MAX_BLOCKS; i++)
-            if (blocks[i].isActive())
+            if (!blocks[i].isActive())
             {
                 blocks[i].spawn(speed, y);
                 return 1;
@@ -41,10 +40,21 @@ public class BlockManager
         return 0;
     }
 
-    public void draw()
+    public void Update()
     {
-        for( int i = 0; i < MAX_BLOCKS; i++)
-            if (blocks[i].isActive())
-                blocks[i].draw(view.getHolder());
+        for( int i = 0; i < MAX_BLOCKS; i++) {
+            if (blocks[i].isActive()) {
+                blocks[i].Update();
+            }
+        }
+    }
+
+    public void draw(GameView v)
+    {
+        for( int i = 0; i < MAX_BLOCKS; i++) {
+            if (blocks[i].isActive()) {
+                blocks[i].draw(v);
+            }
+        }
     }
 }
