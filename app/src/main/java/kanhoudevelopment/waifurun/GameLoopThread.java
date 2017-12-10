@@ -39,7 +39,10 @@ public class GameLoopThread extends Thread {
 
     private boolean hasPressed(View v, MotionEvent ev) {
         if(cuBtnRight.isPressed(ev)){
-            System.out.println("HAS PRESSED BUTTON");
+            if(!player.isJumping()) {
+                player.jump();
+            }
+
             return true;
         }
         return false;
@@ -62,6 +65,7 @@ public class GameLoopThread extends Thread {
         player = new Player(200, 1080-BUTTON_HEIGHT, view);
         background = BitmapFactory.decodeResource(view.getResources(),R.drawable.background);
         guiBackground = BitmapFactory.decodeResource(view.getResources(),R.drawable.guibackgroundtest4);
+
 
         int a,b = 0;
 
@@ -89,13 +93,20 @@ public class GameLoopThread extends Thread {
                 a++;
             */
 
-            if(!player.getJumping()) {
+            /*if(!player.isJumping()) {
                 player.jump();
             } else if(player.getBottomY() >= GAME_HEIGHT-64) {
                 player.landing();
+            }*/
+
+            System.out.println(player.getBottomY() + GAME_HEIGHT-64);
+            if(player.getBottomY() >= GAME_HEIGHT-64 && player.isJumping()) {
+                player.landing();
+
             }
 
             player.update();
+
 
             //------------------------------------------
 

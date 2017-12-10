@@ -1,19 +1,18 @@
 package kanhoudevelopment.waifurun.objects;
 
+
+/**
+ * Created by nacon on 2017-12-10.
+ */
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
 import kanhoudevelopment.waifurun.GameView;
 import kanhoudevelopment.waifurun.R;
-
-/**
- * Created by nacon on 2017-12-10.
- */
 
 public class cuButton {
 

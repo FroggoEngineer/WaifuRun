@@ -16,6 +16,7 @@ public class Player
     private int speedY;
     private boolean jumping;
 
+
     Bitmap tex;
     private final int frameHeight = 256;
     int frameWidth = 151;
@@ -29,7 +30,6 @@ public class Player
         posY = y;
         tex = BitmapFactory.decodeResource(v.getResources(), R.drawable.megumin);
         posY -= (tex.getHeight() + 64);
-
     }
 
     public void update() {
@@ -51,7 +51,7 @@ public class Player
     }
 
 
-    public boolean getJumping() {
+    public boolean isJumping() {
         return jumping;
     }
 
@@ -71,6 +71,7 @@ public class Player
         }
 
     }
+
 
     public void draw(GameView view) {
 
