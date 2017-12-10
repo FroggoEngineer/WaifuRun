@@ -4,13 +4,14 @@ import android.graphics.Bitmap;
 
 public class Block extends LivingObject
 {
+    private static final int BLOCK_SIZE = 64;
 
     @Override
     protected void LoadContent(Bitmap t)
     {
         super.LoadContent(t);
-        width = 128;
-        height = 128;
+        width = BLOCK_SIZE;
+        height = BLOCK_SIZE;
         texture = Bitmap.createScaledBitmap(t, width, height, false);
     }
 
@@ -25,7 +26,7 @@ public class Block extends LivingObject
     public void spawn(int speed, int y, int q)
     {
         speedX = speed * -1;
-        posX = 1920 + q;
+        posX = 1920 + q * BLOCK_SIZE;
         posY = y;
         active = true;
     }

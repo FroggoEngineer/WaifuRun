@@ -44,7 +44,6 @@ public class GameLoopThread extends Thread {
                 bManager.spawnBlock(20, 1080-128);
                 bManager.spawnBlock(20, 1080-128);
                 bManager.spawnBlock(20, 1080-128);
-
             }
 
             bManager.Update();
