@@ -72,6 +72,4 @@ public class Player
 
         view.draw(tmp, posX, posY);
     }
-
-
 }
