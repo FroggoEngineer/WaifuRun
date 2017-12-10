@@ -30,23 +30,31 @@ public class GameLoopThread extends Thread {
         bManager = new BlockManager();
         bManager.Initialize(view);
         player = new Player(50, 400, view);
-        int a = 0;
+        int a = 0, b = 0;
 
         while (running) {
-
-            if (a < 120)
-                a++;
-            else
-            {
-                a = 0;
-                bManager.spawnBlock(20, 1080-128);
-                bManager.spawnBlock(20, 1080-128);
-                bManager.spawnBlock(20, 1080-128);
-                bManager.spawnBlock(20, 1080-128);
-                bManager.spawnBlock(20, 1080-128);
-            }
-
             bManager.Update();
+
+            if (b == 7)
+            {
+                bManager.spawnBlock(8, 1080-64);
+                b = 0;
+            }
+            else
+                b++;
+
+            /*
+            if (a == 7 || a == 15 || a == 23)
+                bManager.spawnBlock(8, 1080-64*2);
+            if (a == 15 || a == 23)
+                bManager.spawnBlock(8, 1080-64*3);
+            if (a == 23)
+                bManager.spawnBlock(8, 1080-64*4);
+            if (a == 31)
+                a = 0;
+            else
+                a++;
+            */
 
             player.update();
 

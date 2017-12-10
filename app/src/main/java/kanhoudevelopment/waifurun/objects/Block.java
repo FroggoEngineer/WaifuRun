@@ -26,7 +26,11 @@ public class Block extends LivingObject
     public void spawn(int speed, int y, int q)
     {
         speedX = speed * -1;
-        posX = 1920 + q * BLOCK_SIZE;
+        if (q == 0)
+            posX = 1920 + BLOCK_SIZE;
+        else
+            posX = q + BLOCK_SIZE;
+
         posY = y;
         active = true;
     }

@@ -8,7 +8,7 @@ import kanhoudevelopment.waifurun.GameView;
 public class BlockManager
 {
     public void BlockManager(){}
-    private static final int MAX_BLOCKS = 20;
+    private static final int MAX_BLOCKS = 128;
 
     private Block blocks[];
 
@@ -21,14 +21,21 @@ public class BlockManager
             blocks[i].LoadContent(BitmapFactory.decodeResource(v.getResources(),
                     R.drawable.stone));
         }
+        for (int i = 0; i < 32; i++)
+            blocks[i].spawn(8, 1080-64, i*64+1);
     }
 
     public void spawnBlock(int speed, int y)
     {
         int q = 0;
         for (int i = 0; i < MAX_BLOCKS; i++)
-            if (blocks[i].getPosY() == y && blocks[i].getPosX() >= 1920)
-                q++;
+        {
+            //System.out.println(blocks[i].getPosX());
+            if (blocks[i].isActive() && blocks[i].getPosX() > 1920 && blocks[i].getPosY() == y) {
+                if (blocks[i].getPosX() > q+1)
+                    q = blocks[i].getPosX();
+            }
+        }
         for (int i = 0; i < MAX_BLOCKS; i++)
             if (!blocks[i].isActive())
             {
