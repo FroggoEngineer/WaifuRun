@@ -70,16 +70,11 @@ public class GameView extends SurfaceView {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        //ADD DRAW FUCKING STUFF HERE !!!!!!!!!!!!!!!!!!!!
-
+        //Clear the screen with black color
         canvas.drawColor(Color.BLACK);
-        /*if (x < getWidth() - bmpReisen.getWidth()) {
-            x++;
-        }*/
-        //Draw background thingy
-        canvas.drawBitmap(bmp, 0, 0, null);
+        Bitmap temp = Bitmap.createScaledBitmap(bmp, canvas.getWidth(), canvas.getHeight(),true);
+        //Draw background bitmap (Double buffer system)
+        canvas.drawBitmap(temp, 0, 0, null);
 
-        //Draw reisen
-        //canvas.drawBitmap(bmpReisen, x, 10, null);
     }
 }
