@@ -11,7 +11,6 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
 
-
 public class GameLoopThread extends Thread {
 
     private GameView view;
@@ -24,6 +23,7 @@ public class GameLoopThread extends Thread {
     private final int SCREEN_HEIGHT = 1080;
     private final int SCREEN_WIDTH = 1920;
     private Bitmap background;
+    private Bitmap guiBackground;
 
     public GameLoopThread(GameView view) {
         this.view = view;
@@ -59,11 +59,10 @@ public class GameLoopThread extends Thread {
         cuBtnRight = new cuButton(view,SCREEN_WIDTH-256-50,SCREEN_HEIGHT-256,256,null);
 
         player = new Player(150, 1080-BUTTON_HEIGHT, view);
-
         background = BitmapFactory.decodeResource(view.getResources(),R.drawable.background);
+        guiBackground = BitmapFactory.decodeResource(view.getResources(),R.drawable.guibackgroundtest4);
 
         int a,b = 0;
-
 
         while (running) {
             bManager.Update();
@@ -92,7 +91,6 @@ public class GameLoopThread extends Thread {
 
             //------------------------------------------
 
-
             //DRAWING HAPPENS HERE
             //------------------------------------------
             //Clear the background and ready it for new batch
@@ -111,6 +109,8 @@ public class GameLoopThread extends Thread {
 
             //UI RENDERING HAPPENS HERE
             //------------------------------------------
+
+            view.draw(guiBackground,0,SCREEN_HEIGHT-BUTTON_HEIGHT);
             cuBtnRight.draw(view);
             cuBtnLeft.draw(view);
 

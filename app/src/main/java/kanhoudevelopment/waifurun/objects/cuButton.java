@@ -24,7 +24,7 @@ public class cuButton {
     private Paint p;
 
     public cuButton(View v, int posX, int posY, int radius, Paint p) {
-        Bitmap tmp = BitmapFactory.decodeResource(v.getResources(), R.drawable.button_round);
+        Bitmap tmp = BitmapFactory.decodeResource(v.getResources(), R.drawable.button2);
         this.tex = Bitmap.createScaledBitmap(tmp, radius, radius, false);
         this.posX = posX;
         this.posY = posY;
