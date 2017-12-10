@@ -35,12 +35,17 @@ public class GameLoopThread extends Thread {
 
             //DO GAME STUFF HERE
 
-            if (a < 60)
+            if (a < 120)
                 a++;
             else
             {
                 a = 0;
                 bManager.spawnBlock(20, 1080-128);
+                bManager.spawnBlock(20, 1080-128);
+                bManager.spawnBlock(20, 1080-128);
+                bManager.spawnBlock(20, 1080-128);
+                bManager.spawnBlock(20, 1080-128);
+
             }
 
             bManager.Update();

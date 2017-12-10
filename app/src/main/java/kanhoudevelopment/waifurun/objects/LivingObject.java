@@ -2,8 +2,6 @@ package kanhoudevelopment.waifurun.objects;
 
 import kanhoudevelopment.waifurun.GameView;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
 
 public class LivingObject
 {
@@ -16,6 +14,9 @@ public class LivingObject
     {
         return active;
     }
+
+    public int getPosX() { return posX; }
+    public int getPosY() { return posY; }
 
     protected void LoadContent(Bitmap t)
     {

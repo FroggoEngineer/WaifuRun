@@ -22,10 +22,10 @@ public class Block extends LivingObject
         super.Update();
     }
 
-    public void spawn(int speed, int y)
+    public void spawn(int speed, int y, int q)
     {
         speedX = speed * -1;
-        posX = 1920;
+        posX = 1920 + q;
         posY = y;
         active = true;
     }

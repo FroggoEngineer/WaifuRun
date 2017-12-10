@@ -1,7 +1,6 @@
 package kanhoudevelopment.waifurun.objects;
 
 import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.view.SurfaceView;
 import kanhoudevelopment.waifurun.R;
 import kanhoudevelopment.waifurun.GameView;
@@ -32,10 +31,15 @@ public class BlockManager
 
     public int spawnBlock(int speed, int y)
     {
+        int q = 0;
+        for (int i = 0; i < MAX_BLOCKS; i++)
+            if (blocks[i].getPosY() == y && blocks[i].getPosX() > 1920)
+                q += 128;
+
         for (int i = 0; i < MAX_BLOCKS; i++)
             if (!blocks[i].isActive())
             {
-                blocks[i].spawn(speed, y);
+                blocks[i].spawn(speed, y, q);
                 return 1;
             }
         return 0;
