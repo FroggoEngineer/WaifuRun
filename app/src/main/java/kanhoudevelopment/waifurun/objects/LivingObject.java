@@ -1,6 +1,6 @@
 package kanhoudevelopment.waifurun.objects;
 
-import android.view.SurfaceHolder;
+import kanhoudevelopment.waifurun.GameView;
 import android.graphics.Bitmap;
 import android.graphics.Paint;
 
@@ -10,7 +10,6 @@ public class LivingObject
     protected int posX, posY, speedX, speedY;
     protected boolean active;
     protected Bitmap texture;
-    Paint paint;
 
     protected boolean isActive()
     {
@@ -24,8 +23,6 @@ public class LivingObject
         speedX = 0;
         active = false;
         texture = t;
-        paint = new Paint();
-
     }
 
     protected void Update()
@@ -34,11 +31,11 @@ public class LivingObject
         posY += speedY;
     }
 
-    protected void draw(SurfaceHolder holder)
+    protected void draw(GameView v)
     {
         if (active)
         {
-            holder.lockCanvas().drawBitmap(texture, posX, posY, paint);
+           v.draw(texture, posX, posY);
         }
     }
 }

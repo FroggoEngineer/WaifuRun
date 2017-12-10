@@ -14,14 +14,15 @@ public class Block extends LivingObject
     @Override
     protected void Update()
     {
-        if (posX < 0)
+        if (posX < -254)
             active = false;
+        super.Update();
     }
 
     public void spawn(int speed, int y)
     {
         speedX = speed * -1;
-        posX = 500;
+        posX = 1280;
         posY = y;
         active = true;
     }
