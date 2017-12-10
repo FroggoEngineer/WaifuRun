@@ -1,5 +1,5 @@
 package kanhoudevelopment.waifurun;
-import kanhoudevelopment.waifurun.objects.BlockManager;
+import kanhoudevelopment.waifurun.objects.*;
 
 /**
  * Created by Kevin on 2017-12-10.
@@ -15,7 +15,7 @@ public class GameLoopThread extends Thread {
     private GameView view;
     private boolean running = false;
     private BlockManager bManager;
-
+    private Player player;
 
     public GameLoopThread(GameView view) {
         this.view = view;
@@ -29,11 +29,10 @@ public class GameLoopThread extends Thread {
     public void run() {
         bManager = new BlockManager();
         bManager.Initialize(view);
+        player = new Player(50, 400, view);
         int a = 0;
 
         while (running) {
-
-            //DO GAME STUFF HERE
 
             if (a < 120)
                 a++;
@@ -50,11 +49,26 @@ public class GameLoopThread extends Thread {
 
             bManager.Update();
 
+            player.update();
+
+            //------------------------------------------
+
+
+            //DRAWING HAPPENS HERE
+            //------------------------------------------
+            //Clear the background and ready it for new batch
             view.clear();
+
             //Do own draw stuff here
             //example: view.draw(block.getBitmap(), 10, 10
             bManager.draw(view);
+            player.draw(view);
+
+            //------------------------------------------
+
+
             //DON'T DRAW AFTER THIS!!!!!
+            //This only displays the background per Double buffering system
             Canvas c = null;
             try {
                 c = view.getHolder().lockCanvas();

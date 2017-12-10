@@ -8,7 +8,7 @@ import kanhoudevelopment.waifurun.GameView;
 public class BlockManager
 {
     public void BlockManager(){}
-    private static final int MAX_BLOCKS = 20;
+    private static final int MAX_BLOCKS = 1;
     SurfaceView view;
 
     private Block blocks[];
