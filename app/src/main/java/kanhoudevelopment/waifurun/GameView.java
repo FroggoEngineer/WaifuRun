@@ -9,13 +9,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.util.Log;
-import android.view.MotionEvent;
+import android.graphics.Paint;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
+
+import kanhoudevelopment.waifurun.objects.cuButton;
 
 
 public class GameView extends SurfaceView {
@@ -28,7 +26,9 @@ public class GameView extends SurfaceView {
     private Canvas back;
 
     public GameView(Context context) {
+
         super(context);
+
         gameLoopThread = new GameLoopThread(this);
         holder = getHolder();
         holder.addCallback(new SurfaceHolder.Callback() {
@@ -69,23 +69,19 @@ public class GameView extends SurfaceView {
     public void draw(Bitmap tempBit, int x, int y) {
         //c.drawBitmap(bmpReisen, 50, 50, null);
         back.drawBitmap(tempBit,x,y,null);
+
     }
 
 
     @Override
     protected void onDraw(Canvas canvas) {
 
-        //ADD DRAW FUCKING STUFF HERE !!!!!!!!!!!!!!!!!!!!
-
+        //Clear the screen with black color
         canvas.drawColor(Color.BLACK);
-        /*if (x < getWidth() - bmpReisen.getWidth()) {
-            x++;
-        }*/
-        //Draw background thingy
-        canvas.drawBitmap(bmp, 0, 0, null);
+        Bitmap temp = Bitmap.createScaledBitmap(bmp, canvas.getWidth(), canvas.getHeight(),true);
+        //Draw background bitmap (Double buffer system)
+        canvas.drawBitmap(temp, 0, 0, null);
 
-        //Draw reisen
-        //canvas.drawBitmap(bmpReisen, x, 10, null);
     }
 
 }
