@@ -30,7 +30,6 @@ public class Player
         tex = BitmapFactory.decodeResource(v.getResources(), R.drawable.megumin);
         posY -= (tex.getHeight() + 64);
 
-
     }
 
     public void update() {

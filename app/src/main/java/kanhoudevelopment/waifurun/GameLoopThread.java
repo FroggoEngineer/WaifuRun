@@ -21,6 +21,9 @@ public class GameLoopThread extends Thread {
     private cuButton cuBtnLeft;
     private cuButton cuBtnRight;
     private final int BUTTON_HEIGHT = 256;
+    private final int SCREEN_HEIGHT = 1080;
+    private final int SCREEN_WIDTH = 1920;
+
 
     public GameLoopThread(GameView view) {
         this.view = view;
@@ -52,8 +55,8 @@ public class GameLoopThread extends Thread {
         bManager = new BlockManager();
         bManager.Initialize(view);
 
-        cuBtnLeft = new cuButton(view,200,400,0,null);
-        cuBtnRight = new cuButton(view,500,400,0,null);
+        cuBtnLeft = new cuButton(view,50,SCREEN_HEIGHT-256,0,null);
+        cuBtnRight = new cuButton(view,SCREEN_WIDTH-256-50,SCREEN_HEIGHT-256,0,null);
 
         player = new Player(150, 1080-BUTTON_HEIGHT, view);
         int a,b = 0;
@@ -92,15 +95,20 @@ public class GameLoopThread extends Thread {
             //Clear the background and ready it for new batch
             view.clear();
 
-            //Do own draw stuff here
+            //DRAW GAME STUFF
             //example: view.draw(block.getBitmap(), 10, 10
             bManager.draw(view);
             player.draw(view);
+
+
+            //------------------------------------------
+
+            //UI RENDERING HAPPENS HERE
+            //------------------------------------------
             cuBtnRight.draw(view);
             cuBtnLeft.draw(view);
 
             //------------------------------------------
-
 
             //DON'T DRAW AFTER THIS!!!!!
             //This only displays the background per Double buffering system
