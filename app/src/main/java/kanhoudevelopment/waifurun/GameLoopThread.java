@@ -44,7 +44,13 @@ public class GameLoopThread extends Thread {
             }
 
 
-            //DRAW FUCKING PIECE OF SHIT
+            view.clear();
+            //Do own draw stuff here
+            //example: view.draw(block.getBitmap(), 10, 10)
+
+
+
+            //DON'T DRAW AFTER THIS!!!!!
             Canvas c = null;
             try {
                 c = view.getHolder().lockCanvas();
