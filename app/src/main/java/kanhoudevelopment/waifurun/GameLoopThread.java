@@ -23,7 +23,7 @@ public class GameLoopThread extends Thread {
     private final int BUTTON_HEIGHT = 256;
     private final int SCREEN_HEIGHT = 1080;
     private final int SCREEN_WIDTH = 1920;
-
+    private Bitmap background;
 
     public GameLoopThread(GameView view) {
         this.view = view;
@@ -59,6 +59,9 @@ public class GameLoopThread extends Thread {
         cuBtnRight = new cuButton(view,SCREEN_WIDTH-256-50,SCREEN_HEIGHT-256,256,null);
 
         player = new Player(150, 1080-BUTTON_HEIGHT, view);
+
+        background = BitmapFactory.decodeResource(view.getResources(),R.drawable.background);
+
         int a,b = 0;
 
 
@@ -94,6 +97,9 @@ public class GameLoopThread extends Thread {
             //------------------------------------------
             //Clear the background and ready it for new batch
             view.clear();
+
+            //Background
+            view.draw(background,0,0);
 
             //DRAW GAME STUFF
             //example: view.draw(block.getBitmap(), 10, 10
