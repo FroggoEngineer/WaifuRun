@@ -30,14 +30,9 @@ public class GameActivity extends AppCompatActivity implements Runnable {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN
                 | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
-
         //main();
 
     }
-
-
-
-
 
     private void main() {
 
@@ -76,9 +71,10 @@ public class GameActivity extends AppCompatActivity implements Runnable {
         }
         //update();
 
-
     }
-
+    @Override
+    public void onBackPressed() {
+    }
 
 
 }
