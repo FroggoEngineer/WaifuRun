@@ -55,8 +55,8 @@ public class GameLoopThread extends Thread {
         bManager = new BlockManager();
         bManager.Initialize(view);
 
-        cuBtnLeft = new cuButton(view,50,SCREEN_HEIGHT-256,0,null);
-        cuBtnRight = new cuButton(view,SCREEN_WIDTH-256-50,SCREEN_HEIGHT-256,0,null);
+        cuBtnLeft = new cuButton(view,50,SCREEN_HEIGHT-256,256,null);
+        cuBtnRight = new cuButton(view,SCREEN_WIDTH-256-50,SCREEN_HEIGHT-256,256,null);
 
         player = new Player(150, 1080-BUTTON_HEIGHT, view);
         int a,b = 0;
