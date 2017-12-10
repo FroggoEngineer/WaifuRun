@@ -16,6 +16,7 @@ public class GameLoopThread extends Thread {
     private boolean running = false;
     private BlockManager bManager;
     private Player player;
+    private final int BUTTON_HEIGHT = 128;
 
     public GameLoopThread(GameView view) {
         this.view = view;
@@ -29,7 +30,7 @@ public class GameLoopThread extends Thread {
     public void run() {
         bManager = new BlockManager();
         bManager.Initialize(view);
-        player = new Player(50, 400, view);
+        player = new Player(150, 1080-BUTTON_HEIGHT, view);
         int a = 0;
 
         while (running) {
@@ -41,7 +42,7 @@ public class GameLoopThread extends Thread {
             else
             {
                 a = 0;
-                bManager.spawnBlock(20, 1080-128);
+                bManager.spawnBlock(20, 1080-BUTTON_HEIGHT-64);
             }
 
             bManager.Update();

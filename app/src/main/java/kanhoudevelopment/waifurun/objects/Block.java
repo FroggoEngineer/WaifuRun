@@ -9,8 +9,8 @@ public class Block extends LivingObject
     protected void LoadContent(Bitmap t)
     {
         super.LoadContent(t);
-        width = 128;
-        height = 128;
+        width = 64;
+        height = 64;
         texture = Bitmap.createScaledBitmap(t, width, height, false);
     }
 
