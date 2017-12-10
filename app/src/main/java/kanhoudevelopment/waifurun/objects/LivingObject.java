@@ -2,12 +2,13 @@ package kanhoudevelopment.waifurun.objects;
 
 import kanhoudevelopment.waifurun.GameView;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Paint;
 
 public class LivingObject
 {
 
-    protected int posX, posY, speedX, speedY;
+    protected int posX, posY, speedX, speedY, width, height;
     protected boolean active;
     protected Bitmap texture;
 
@@ -20,6 +21,8 @@ public class LivingObject
     {
         posX = 0;
         posY = 0;
+        width = 0;
+        height = 0;
         speedX = 0;
         active = false;
         texture = t;

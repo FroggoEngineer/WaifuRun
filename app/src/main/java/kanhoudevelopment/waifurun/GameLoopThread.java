@@ -54,7 +54,7 @@ public class GameLoopThread extends Thread {
             else
             {
                 a = 0;
-                bManager.spawnBlock(10, 400);
+                bManager.spawnBlock(20, 1080-128);
             }
 
             bManager.Update();
@@ -62,9 +62,8 @@ public class GameLoopThread extends Thread {
 
             view.clear();
             //Do own draw stuff here
-            //example: view.draw(block.getBitmap(), 10, 10)
+            //example: view.draw(block.getBitmap(), 10, 10
             bManager.draw(view);
-
             //DON'T DRAW AFTER THIS!!!!!
             Canvas c = null;
             try {

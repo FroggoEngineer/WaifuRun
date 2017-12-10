@@ -1,6 +1,7 @@
 package kanhoudevelopment.waifurun.objects;
 
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.view.SurfaceView;
 import kanhoudevelopment.waifurun.R;
 import kanhoudevelopment.waifurun.GameView;

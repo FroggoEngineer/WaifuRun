@@ -25,6 +25,7 @@ public class GameView extends SurfaceView {
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
     private int x = 0;
+    private Canvas back;
 
     public GameView(Context context) {
         super(context);
@@ -61,14 +62,13 @@ public class GameView extends SurfaceView {
     }
 
     public void clear() {
-        bmp = Bitmap.createBitmap(800, 1280, Bitmap.Config.ARGB_8888);
-
+        bmp = Bitmap.createBitmap(1920, 1080, Bitmap.Config.ARGB_8888);
+        back = new Canvas(bmp);
     }
 
     public void draw(Bitmap tempBit, int x, int y) {
-        Canvas c = new Canvas(bmp);
-        c.drawBitmap(bmpReisen, 50, 50, null);
-        c.drawBitmap(tempBit,x,y,null);
+        //c.drawBitmap(bmpReisen, 50, 50, null);
+        back.drawBitmap(tempBit,x,y,null);
     }
 
 
@@ -78,14 +78,14 @@ public class GameView extends SurfaceView {
         //ADD DRAW FUCKING STUFF HERE !!!!!!!!!!!!!!!!!!!!
 
         canvas.drawColor(Color.BLACK);
-        if (x < getWidth() - bmpReisen.getWidth()) {
+        /*if (x < getWidth() - bmpReisen.getWidth()) {
             x++;
-        }
+        }*/
         //Draw background thingy
         canvas.drawBitmap(bmp, 0, 0, null);
 
         //Draw reisen
-        canvas.drawBitmap(bmpReisen, x, 10, null);
+        //canvas.drawBitmap(bmpReisen, x, 10, null);
     }
 
 }
