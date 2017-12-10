@@ -5,23 +5,18 @@ package kanhoudevelopment.waifurun;
  */
 
 import android.content.Context;
-
 import android.graphics.Bitmap;
-
 import android.graphics.BitmapFactory;
-
 import android.graphics.Canvas;
-
 import android.graphics.Color;
-
 import android.view.SurfaceHolder;
-
 import android.view.SurfaceView;
 
 
 
 public class GameView extends SurfaceView {
     private Bitmap bmp;
+    private Bitmap bmpReisen;
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
     private int x = 0;
@@ -34,19 +29,13 @@ public class GameView extends SurfaceView {
 
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
-
                 boolean retry = true;
-
                 gameLoopThread.setRunning(false);
 
                 while (retry) {
-
                     try {
-
                         gameLoopThread.join();
-
                         retry = false;
-
                     } catch (InterruptedException e) {
                     }
                 }
@@ -64,17 +53,33 @@ public class GameView extends SurfaceView {
                                        int width, int height) {
             }
         });
-        bmp = BitmapFactory.decodeResource(getResources(), R.drawable.reisensprite);
+        bmpReisen = BitmapFactory.decodeResource(getResources(), R.drawable.reisensprite);
+    }
+
+    public void clear() {
+        bmp = Bitmap.createBitmap(800, 1280, Bitmap.Config.ARGB_8888);
+
+    }
+
+    public void draw(Bitmap tempBit, int x, int y) {
+        Canvas c = new Canvas(bmp);
+
+        c.drawBitmap(tempBit,x,y,null);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
 
-        //ADD DRAW FUCKING STUFF HERE !!!!!!!!!!!!!!!!!!!!!
+        //ADD DRAW FUCKING STUFF HERE !!!!!!!!!!!!!!!!!!!!
+
         canvas.drawColor(Color.BLACK);
-        if (x < getWidth() - bmp.getWidth()) {
+        if (x < getWidth() - bmpReisen.getWidth()) {
             x++;
         }
-        canvas.drawBitmap(bmp, x, 10, null);
+        //Draw background thingy
+        canvas.drawBitmap(bmp, 0, 0, null);
+
+        //Draw reisen
+        canvas.drawBitmap(bmpReisen, x, 10, null);
     }
 }
