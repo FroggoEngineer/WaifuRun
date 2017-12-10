@@ -30,7 +30,7 @@ public class Player
         tex = BitmapFactory.decodeResource(v.getResources(), R.drawable.megumin);
         posY -= (tex.getHeight() + 64);
 
-        System.out.println(tex.getHeight());
+
     }
 
     public void update() {
@@ -38,7 +38,6 @@ public class Player
         frameTicks++;
         if(frameTicks == aniSpeed) {
             frameTicks = 0;
-            System.out.println("Updating frame to: " + (currentFrame+1));
             currentFrame++;
 
             if(currentFrame == frameCount ) {
