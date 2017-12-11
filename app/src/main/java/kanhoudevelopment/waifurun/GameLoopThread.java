@@ -8,8 +8,10 @@ import kanhoudevelopment.waifurun.objects.*;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.media.*;
 import android.view.MotionEvent;
 import android.view.View;
+
 
 public class GameLoopThread extends Thread {
 
@@ -25,6 +27,8 @@ public class GameLoopThread extends Thread {
     private final int GAME_HEIGHT = SCREEN_HEIGHT-BUTTON_HEIGHT;
     private Bitmap background;
     private Bitmap guiBackground;
+    private MediaPlayer music;
+
 
     public GameLoopThread(GameView view) {
         this.view = view;
@@ -66,8 +70,11 @@ public class GameLoopThread extends Thread {
         background = BitmapFactory.decodeResource(view.getResources(),R.drawable.background);
         guiBackground = BitmapFactory.decodeResource(view.getResources(),R.drawable.guibackgroundtest4);
 
-
+        music = MediaPlayer.create(view.getContext(), R.raw.music);
+        music.start();
         int a,b = 0;
+
+
 
         while (running) {
             bManager.Update();
