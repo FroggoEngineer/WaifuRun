@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 
 public class Block extends LivingObject
 {
-    private static final int BLOCK_SIZE = 64;
+    private static final int BLOCK_SIZE = 48;
 
     @Override
     protected void LoadContent(Bitmap t)
@@ -28,7 +28,7 @@ public class Block extends LivingObject
     {
         speedX = speed * -1;
         if (q == 0)
-            posX = 1920 + BLOCK_SIZE;
+            posX = 1280 + BLOCK_SIZE;
         else
             posX = q + BLOCK_SIZE;
 

@@ -23,7 +23,7 @@ public class BlockManager
         }
         for (int i = 0; i < 32; i++)
             //256 = button height, 64 = block height
-            blocks[i].spawn(8, 1080-256-64, i*64+1);
+            blocks[i].spawn(8, 720-170-48, i*64+1);
     }
 
     public void spawnBlock(int speed, int y)
@@ -32,7 +32,7 @@ public class BlockManager
         for (int i = 0; i < MAX_BLOCKS; i++)
         {
             //System.out.println(blocks[i].getPosX());
-            if (blocks[i].isActive() && blocks[i].getPosX() > 1920 && blocks[i].getPosY() == y) {
+            if (blocks[i].isActive() && blocks[i].getPosX() > 1280 && blocks[i].getPosY() == y) {
                 if (blocks[i].getPosX() > q+1)
                     q = blocks[i].getPosX();
             }

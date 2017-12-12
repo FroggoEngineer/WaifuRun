@@ -21,9 +21,9 @@ public class GameLoopThread extends Thread {
     private Player player;
     private cuButton cuBtnLeft;
     private cuButton cuBtnRight;
-    private final int BUTTON_HEIGHT = 256;
-    private final int SCREEN_HEIGHT = 1080;
-    private final int SCREEN_WIDTH = 1920;
+    private final int BUTTON_HEIGHT = 170;
+    private final int SCREEN_HEIGHT = 720;
+    private final int SCREEN_WIDTH = 1280;
     private final int GAME_HEIGHT = SCREEN_HEIGHT-BUTTON_HEIGHT;
     private Bitmap background;
     private Bitmap guiBackground;
@@ -66,10 +66,10 @@ public class GameLoopThread extends Thread {
         double scaleX = ((double)SCREEN_WIDTH) / ((double)view.getWidth());
         double scaleY = ((double)SCREEN_HEIGHT) / ((double)view.getHeight());
 
-        cuBtnLeft = new cuButton(view,50,SCREEN_HEIGHT-256,256,null, scaleX, scaleY);
-        cuBtnRight = new cuButton(view,SCREEN_WIDTH-256-50,SCREEN_HEIGHT-256,256,null, scaleX, scaleY);
+        cuBtnLeft = new cuButton(view,40,SCREEN_HEIGHT-170,170,null, scaleX, scaleY);
+        cuBtnRight = new cuButton(view,SCREEN_WIDTH-170-40,SCREEN_HEIGHT-170,170,null, scaleX, scaleY);
 
-        player = new Player(200, 1080-BUTTON_HEIGHT, view);
+        player = new Player(150, SCREEN_HEIGHT-BUTTON_HEIGHT, view);
         background = BitmapFactory.decodeResource(view.getResources(),R.drawable.background);
         guiBackground = BitmapFactory.decodeResource(view.getResources(),R.drawable.guibackgroundtest4);
 
@@ -88,7 +88,7 @@ public class GameLoopThread extends Thread {
             if (b == 7)
             {
                 a = 0;
-                bManager.spawnBlock(8, 1080-BUTTON_HEIGHT-64);
+                bManager.spawnBlock(8, SCREEN_HEIGHT-BUTTON_HEIGHT-48);
             }
             else
                 b++;
@@ -136,7 +136,9 @@ public class GameLoopThread extends Thread {
             //------------------------------------------
             //Clear the background and ready it for new batch
 
-            start = System.nanoTime();
+
+
+            long gameTime = System.nanoTime();
 
             view.clear();
 
@@ -148,21 +150,27 @@ public class GameLoopThread extends Thread {
             bManager.draw(view);
             player.draw(view);
 
+            long gameEnd = System.nanoTime();
 
+            System.out.println("Time for rendering game: " + (gameEnd - gameTime));
             //------------------------------------------
 
             //UI RENDERING HAPPENS HERE
             //------------------------------------------
-
+            long UITime = System.nanoTime();
             view.draw(guiBackground,0,SCREEN_HEIGHT-BUTTON_HEIGHT);
             cuBtnRight.draw(view);
             cuBtnLeft.draw(view);
-
+            long UIEnd = System.nanoTime();
+            System.out.println("Time for rendering U.I: " + (UIEnd - UITime));
             //------------------------------------------
 
             //DON'T DRAW AFTER THIS!!!!!
             //This only displays the background per Double buffering system
+            start = System.nanoTime();
+
             Canvas c = null;
+            /*
             try {
                 c = view.getHolder().lockCanvas();
                 synchronized (view.getHolder()) {
@@ -173,6 +181,11 @@ public class GameLoopThread extends Thread {
                     view.getHolder().unlockCanvasAndPost(c);
                 }
             }
+            */
+
+            c = view.getHolder().lockCanvas();
+            view.onDraw(c);
+            view.getHolder().unlockCanvasAndPost(c);
 
 
             end = System.nanoTime();

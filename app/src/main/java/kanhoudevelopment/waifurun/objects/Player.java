@@ -18,8 +18,8 @@ public class Player
 
 
     Bitmap tex;
-    private final int frameHeight = 256;
-    int frameWidth = 151;
+    private final int frameHeight = 170;
+    int frameWidth = 100;
     private final int frameCount = 4;
     private int currentFrame = 0;
     int frameTicks = 0;
@@ -30,7 +30,7 @@ public class Player
         posX = x;
         posY = y;
         tex = BitmapFactory.decodeResource(v.getResources(), R.drawable.megumin);
-        posY -= (tex.getHeight() + 63);
+        posY -= (tex.getHeight() + 48);
         INITIAL_POSITION_Y = posY;
     }
 
@@ -72,7 +72,7 @@ public class Player
 
     public void jump() {
         if(!jumping) {
-            speedY = -30;
+            speedY = -20;
             jumping = true;
         }
 

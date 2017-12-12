@@ -19,7 +19,7 @@ import kanhoudevelopment.waifurun.objects.cuButton;
 public class GameView extends SurfaceView {
     private Bitmap bmp;
     private Bitmap bmpReisen;
-
+    Bitmap background;
     private SurfaceHolder holder;
     private GameLoopThread gameLoopThread;
     private int x = 0;
@@ -59,15 +59,17 @@ public class GameView extends SurfaceView {
             }
         });
         bmpReisen = BitmapFactory.decodeResource(getResources(), R.drawable.reisensprite);
-    }
 
-    public void clear() {
-        bmp = Bitmap.createBitmap(1920, 1080, Bitmap.Config.ARGB_8888);
+        bmp = Bitmap.createBitmap(1280, 720, Bitmap.Config.RGB_565);
         back = new Canvas(bmp);
     }
 
+    public void clear() {
+        back.drawColor(Color.BLACK);
+
+    }
+
     public void draw(Bitmap tempBit, int x, int y) {
-        //c.drawBitmap(bmpReisen, 50, 50, null);
         back.drawBitmap(tempBit,x,y,null);
 
     }
@@ -78,10 +80,10 @@ public class GameView extends SurfaceView {
 
         //Clear the screen with black color
         canvas.drawColor(Color.BLACK);
-        Bitmap temp = Bitmap.createScaledBitmap(bmp, canvas.getWidth(), canvas.getHeight(),true);
+        background = Bitmap.createScaledBitmap(bmp, canvas.getWidth(), canvas.getHeight(),false);
         //Draw background bitmap (Double buffer system)
-        canvas.drawBitmap(temp, 0, 0, null);
-
+        canvas.drawBitmap(background, 0, 0, null);
+        background.recycle();
     }
 
 }
