@@ -17,27 +17,18 @@ import kanhoudevelopment.waifurun.R;
 public class cuButton {
 
     private Bitmap tex;
-    private int texWidth, texHeight;
-    private int posX, touchX;
-    private int posY, touchY;
-    private int radius, touchR;
-    private double scaleX, scaleY;
+    private int posX;
+    private int posY;
+    private int radius;
     private Paint p;
 
-    public cuButton(View v, int posX, int posY, int radius, Paint p, double scaleX, double scaleY) {
+    public cuButton(View v, int posX, int posY, int radius, Paint p) {
         Bitmap tmp = BitmapFactory.decodeResource(v.getResources(), R.drawable.button2);
         this.tex = Bitmap.createScaledBitmap(tmp, radius, radius, false);
         this.posX = posX;
         this.posY = posY;
         this.radius = radius;
         this.p = p;
-
-        touchX = (int)(((double)posX) / scaleX);
-        touchY = (int)(((double)posY) / scaleY);
-        texWidth = (int)(((double)tex.getWidth())/scaleX);
-        texHeight = (int)(((double)tex.getHeight())/scaleY);
-        this.scaleX = scaleX;
-        this.scaleY = scaleY;
     }
 
     public Bitmap getBitMap() { return tex;}
@@ -52,16 +43,6 @@ public class cuButton {
     }
     public int getRadius() {
         return radius;
-    }
-
-    public void print() {
-        System.out.println("posX: " + touchX);
-        System.out.println("posY: " + touchY);
-        System.out.println("texWidth: " + texWidth);
-        System.out.println("texHeight: " + texHeight);
-
-
-
     }
 
     //SET
@@ -84,16 +65,11 @@ public class cuButton {
     }
 
     public boolean isPressed(MotionEvent event) {
-        if (event.getX() >= touchX && event.getX() < (touchX + texWidth)
-                && event.getY() >= touchY && event.getY() < (touchY + texHeight)) {
-
-            System.out.println("TESTING BUTTON!!!");
+        if (event.getX() >= posX && event.getX() < (posX + tex.getWidth())
+                && event.getY() >= posY && event.getY() < (posY + tex.getHeight())) {
 
             return true;
             //tada, if this is true, you've started your click inside your bitmap
-
-
-
         }
         else {
             return false;

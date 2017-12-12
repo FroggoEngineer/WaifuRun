@@ -42,8 +42,6 @@ public class GameLoopThread extends Thread {
     }
 
     private boolean hasPressed(View v, MotionEvent ev) {
-        System.out.println(ev.getX() + " : " + ev.getY());
-        cuBtnRight.print();
         if(cuBtnRight.isPressed(ev)){
             if(!player.isJumping()) {
                 player.jump();
@@ -65,11 +63,8 @@ public class GameLoopThread extends Thread {
         bManager = new BlockManager();
         bManager.Initialize(view);
 
-        double scaleX = ((double)SCREEN_WIDTH) / ((double)view.getWidth());
-        double scaleY = ((double)SCREEN_HEIGHT) / ((double)view.getHeight());
-
-        cuBtnLeft = new cuButton(view,50,SCREEN_HEIGHT-256,256,null, scaleX, scaleY);
-        cuBtnRight = new cuButton(view,SCREEN_WIDTH-256-50,SCREEN_HEIGHT-256,256,null, scaleX, scaleY);
+        cuBtnLeft = new cuButton(view,50,SCREEN_HEIGHT-256,256,null);
+        cuBtnRight = new cuButton(view,SCREEN_WIDTH-256-50,SCREEN_HEIGHT-256,256,null);
 
         player = new Player(200, 1080-BUTTON_HEIGHT, view);
         background = BitmapFactory.decodeResource(view.getResources(),R.drawable.background);
