@@ -63,8 +63,11 @@ public class GameLoopThread extends Thread {
         bManager = new BlockManager();
         bManager.Initialize(view);
 
-        cuBtnLeft = new cuButton(view,50,SCREEN_HEIGHT-256,256,null);
-        cuBtnRight = new cuButton(view,SCREEN_WIDTH-256-50,SCREEN_HEIGHT-256,256,null);
+        double scaleX = ((double)SCREEN_WIDTH) / ((double)view.getWidth());
+        double scaleY = ((double)SCREEN_HEIGHT) / ((double)view.getHeight());
+
+        cuBtnLeft = new cuButton(view,50,SCREEN_HEIGHT-256,256,null, scaleX, scaleY);
+        cuBtnRight = new cuButton(view,SCREEN_WIDTH-256-50,SCREEN_HEIGHT-256,256,null, scaleX, scaleY);
 
         player = new Player(200, 1080-BUTTON_HEIGHT, view);
         background = BitmapFactory.decodeResource(view.getResources(),R.drawable.background);
@@ -77,6 +80,9 @@ public class GameLoopThread extends Thread {
 
 
         while (running) {
+
+            long start = System.nanoTime();
+
             bManager.Update();
 
             if (b == 7)
@@ -86,6 +92,10 @@ public class GameLoopThread extends Thread {
             }
             else
                 b++;
+
+            long end = System.nanoTime();
+
+            System.out.println("Time for blocks: " + (end - start));
 
             /*
             if (a == 7 || a == 15 || a == 23)
@@ -106,6 +116,7 @@ public class GameLoopThread extends Thread {
                 player.landing();
             }*/
 
+            start = System.nanoTime();
             //Update player movement
             player.update();
 
@@ -115,14 +126,18 @@ public class GameLoopThread extends Thread {
 
             }
 
+            end = System.nanoTime();
 
-
+            System.out.println("Time for player: " + (end - start));
 
             //------------------------------------------
 
             //DRAWING HAPPENS HERE
             //------------------------------------------
             //Clear the background and ready it for new batch
+
+            start = System.nanoTime();
+
             view.clear();
 
             //Background
@@ -158,6 +173,12 @@ public class GameLoopThread extends Thread {
                     view.getHolder().unlockCanvasAndPost(c);
                 }
             }
+
+
+            end = System.nanoTime();
+
+            System.out.println("Time for rendering: " + (end - start));
+
         }
     }
 
